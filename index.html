@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>運用支援 利益貢献レポート</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0057FF;
+    --primary-light: #E8F0FF;
+    --accent: #00D4AA;
+    --dark: #0A0F1E;
+    --mid: #3A4060;
+    --light: #F4F6FC;
+    --white: #ffffff;
+    --border: #DDE3F0;
+    --text: #1A2040;
+    --muted: #6B7599;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--light);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--dark);
+    color: var(--white);
+    padding: 56px 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,87,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,212,170,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-top: 12px;
+  }
+  .header-date {
+    position: absolute;
+    top: 56px; right: 64px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* MAIN */
+  .main {
+    padding: 48px 64px;
+    max-width: 1100px;
+  }
+
+  /* SECTION TITLE */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    margin-top: 48px;
+  }
+  .section-label:first-child { margin-top: 0; }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: var(--dark);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight-box::before {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(0,87,255,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .highlight-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  .highlight-value {
+    font-size: 48px;
+    font-weight: 900;
+    font-family: 'DM Mono', monospace;
+    color: var(--white);
+    letter-spacing: -1px;
+  }
+  .highlight-value span {
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 4px;
+    opacity: 0.7;
+  }
+  .highlight-right {
+    text-align: right;
+  }
+  .highlight-right .sub-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+  .highlight-right .sub-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .data-table th {
+    background: var(--light);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .data-table tr:last-child td {
+    border-bottom: none;
+    font-weight: 700;
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .data-table td.mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+
+  /* QUALITATIVE CARD */
+  .qual-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .qual-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .qual-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .qual-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #E0FBF5; color: #00A882; }
+  .badge-orange { background: #FFF3E0; color: #E07800; }
+
+  /* FUTURE SECTION */
+  .future-card {
+    background: linear-gradient(135deg, #0A0F1E 0%, #1A2550 100%);
+    border-radius: 16px;
+    padding: 32px;
+    color: var(--white);
+  }
+  .future-card .qual-icon {
+    background: rgba(255,255,255,0.1);
+  }
+  .future-card .qual-title { color: var(--white); }
+  .future-card .qual-body { color: rgba(255,255,255,0.6); }
+
+  .client-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .client-chip {
+    font-size: 12px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* SUMMARY */
+  .summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .summary-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .summary-item .s-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .summary-item .s-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--primary);
+  }
+  .summary-item .s-unit {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 64px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 12px;
+    background: var(--white);
+    margin-top: 16px;
+  }
+  .footer-logo {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--dark);
+    letter-spacing: 1px;
+  }
+
+  @media print {
+    body { background: white; }
+    .main { padding: 32px 48px; }
+    .header { padding: 40px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Internal Report / AIBOT</div>
+  <h1>運用支援部門<br>利益貢献レポート</h1>
+  <div class="header-sub">運用支援の定量・定性的な貢献を可視化するための社内資料です。</div>
+  <div class="header-date">2026年5月 作成</div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: 商流変更 -->
+  <div class="section-label">
+    <span class="section-num">01</span>
+    <span class="section-title">商流変更による直接利益</span>
+  </div>
+
+  <div class="highlight-box">
+    <div>
+      <div class="highlight-label">年間利益（直接計上）</div>
+      <div class="highlight-value">27,000<span>円</span></div>
+    </div>
+    <div class="highlight-right">
+      <div class="sub-label">月間利益</div>
+      <div class="sub-value">¥2,250</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>会社名</th>
+          <th>相手企業様の負担額（10%引き後）</th>
+          <th>AIBOT側月額利益</th>
+          <th>年間利益</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>pier39</td>
+          <td class="mono">4,500円</td>
+          <td class="mono">250円</td>
+          <td class="mono">3,000円</td>
+        </tr>
+        <tr>
+          <td>loopsmile</td>
+          <td class="mono">4,500円</td>
+          <td class="mono">250円</td>
+          <td class="mono">3,000円</td>
+        </tr>
+        <tr>
+          <td>コレット</td>
+          <td class="mono">13,500円</td>
+          <td class="mono">750円</td>
+          <td class="mono">9,000円</td>
+        </tr>
+        <tr>
+          <td>アルパジョン</td>
+          <td class="mono">13,500円</td>
+          <td class="mono">750円</td>
+          <td class="mono">9,000円</td>
+        </tr>
+        <tr>
+          <td>circular thanks</td>
+          <td class="mono">4,500円</td>
+          <td class="mono">250円</td>
+          <td class="mono">3,000円</td>
+        </tr>
+        <tr>
+          <td>合計</td>
+          <td class="mono">40,500円</td>
+          <td class="mono">2,250円</td>
+          <td class="mono">27,000円</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin-top:16px; padding: 0 4px;">
+      ※ LINEの商流変更により、相手企業様はLINE公式アカウントの月額料金が10%割引となります。そのうち5%分がAIBOTへの利益として還元される仕組みです。
+    </p>
+  </div>
+
+  <!-- SECTION 2: ITreview -->
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <span class="section-title">ITreviewレビュー獲得（換算価値：約60,000円相当）</span>
+  </div>
+
+  <div class="qual-card">
+    <div class="qual-icon">⭐</div>
+    <div>
+      <div class="qual-title">LIBOTのブランド信頼性向上への貢献</div>
+      <div class="qual-body">
+        運用支援時にレビュー依頼導線を設計し、6件獲得。営業時の信頼性向上に寄与。<br>
+        「LINEマーケティングツール」カテゴリでの認知向上・競合比較ページへの自動掲載にも貢献。
+      </div>
+      <span class="badge badge-blue">評価 4.9 / 5.0</span>
+      <span class="badge badge-green">レビュー 6件</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:13px; color:var(--text); margin-bottom:8px; font-weight:700;">なぜITreviewのレビューに価値があるのか？</p>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.8;">
+      ITreviewは企業ドメイン確認・利用実態チェック・所属確認・内容審査など、審査基準が一般口コミより厳しい。そのため外部に依頼した場合の単価も高くなる。<br>
+      また、一度掲載されたレビューは<strong>半永久的な営業資産</strong>として機能し続ける。
+    </p>
+    <p style="font-size:13px; color:var(--text); margin-bottom:12px; font-weight:700;">口コミ種類別・外部委託した場合の相場比較</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>口コミの種類</th>
+          <th>外部委託時の単価相場</th>
+          <th>6件分の換算額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>一般的な口コミ</td>
+          <td class="mono">500〜3,000円</td>
+          <td class="mono">3,000〜18,000円</td>
+        </tr>
+        <tr>
+          <td>Google口コミ</td>
+          <td class="mono">3,000〜10,000円</td>
+          <td class="mono">18,000〜60,000円</td>
+        </tr>
+        <tr>
+          <td>ITreview（企業審査あり）</td>
+          <td class="mono">5,000〜30,000円</td>
+          <td class="mono">30,000〜180,000円</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="background:var(--primary-light); border-radius:10px; padding:16px 20px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="font-size:13px; color:var(--primary); font-weight:700;">
+        外部委託コスト削減換算<br>
+        <span style="font-size:12px; font-weight:400; color:var(--muted);">AIBOTはITreviewレビューを6件、実ユーザーから無償で獲得。<br>外部に委託した場合にかかったであろうコストを換算すると以下の金額に相当。<br>中間値（1件あたり10,000円）× 6件</span>
+      </div>
+      <div style="text-align:right; margin-left:24px;">
+        <div style="font-size:11px; color:var(--muted); margin-bottom:4px;">外部委託コスト削減換算</div>
+        <div style="font-family:'DM Mono',monospace; font-size:26px; font-weight:700; color:var(--primary); white-space:nowrap;">約60,000円相当</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--muted); margin-top:12px; padding: 0 4px;">
+      ※ 実際に60,000円が手元に残るわけではなく、外部委託した場合にかかったであろうコストを節約できたことを示す換算値です。
+    </p>
+  </div>
+
+  <!-- SECTION 3: チャーン防止 -->
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <span class="section-title">チャーン防止への貢献（今後の数値化予定）</span>
+  </div>
+
+  <div class="future-card">
+    <div style="display:flex; gap:20px; align-items:flex-start;">
+      <div class="qual-icon">🔒</div>
+      <div>
+        <div class="qual-title">関係値構築による継続率向上</div>
+        <div class="qual-body">
+          アカウント設計への深い関与・定期的なフォローにより、以下4社の関係値を構築。
+          現在は全社1年目の年間契約期間中のため、2年目更新タイミングにて継続率として定量評価予定。
+        </div>
+        <div class="client-list">
+          <span class="client-chip">有限会社益野製菓</span>
+          <span class="client-chip">株式会社epi&company</span>
+          <span class="client-chip">まぶたラボ</span>
+          <span class="client-chip">株式会社モアソビ</span>
+        </div>
+        <div style="margin-top:16px;">
+          <span class="badge badge-orange">2年目更新時に定量評価予定</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0;">
+    <p style="font-size:13px; color:var(--text); margin-bottom:12px; font-weight:700;">【仮説】4社が2年目も継続した場合の売上維持試算</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>条件</th>
+          <th>計算式</th>
+          <th>売上維持額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4社すべてカスタムプランで継続と仮定</td>
+          <td class="mono">30,000円 × 12ヶ月 × 4社</td>
+          <td class="mono">1,440,000円 / 年</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin-top:12px; padding: 0 4px;">
+      ※ 上記はすべてカスタムプラン（月額30,000円）で継続した場合の仮説値です。実際のプランや継続可否は2年目更新時に確定します。
+    </p>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section-label" style="margin-top:48px;">
+    <span class="section-num">まとめ</span>
+    <span class="section-title">運用支援の貢献サマリー</span>
+  </div>
+
+  <div class="summary-row">
+    <div class="summary-item">
+      <div class="s-label">商流変更 年間利益</div>
+      <div class="s-value">27,000</div>
+      <div class="s-unit">円 / 年</div>
+    </div>
+    <div class="summary-item">
+      <div class="s-label">ITreview換算価値</div>
+      <div class="s-value">60,000</div>
+      <div class="s-unit">円相当（6件×1万円）</div>
+    </div>
+    <div class="summary-item">
+      <div class="s-label">チャーン防止（仮説）</div>
+      <div class="s-value">144万</div>
+      <div class="s-unit">円 / 年（4社継続時）</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: 次のアクション -->
+  <div class="section-label" style="margin-top:48px;">
+    <span class="section-num">04</span>
+    <span class="section-title">今後のアクション</span>
+  </div>
+
+  <div class="card">
+    <p style="font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.8;">
+      運用支援業務は商流変更・レビュー獲得・チャーン防止を通じて、確実に利益創出へ寄与している。今後はこれらの取り組みを属人化させず、標準化・仕組み化することで、さらなる利益貢献を目指す。
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>アクション</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>① レビュー獲得フローの標準化</td>
+          <td>オンボーディング時にITreviewレビュー依頼を組み込み、全クライアントへ展開</td>
+        </tr>
+        <tr>
+          <td>② 商流変更フローの標準化</td>
+          <td>オンボーディング時に商流変更の案内を必須フローとして組み込み、対象社数を拡大</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-logo">AIBOT — 運用支援部門</div>
+  <div>本資料は社内共有用です。2026年5月作成</div>
+</div>
+
+</body>
+</html>
