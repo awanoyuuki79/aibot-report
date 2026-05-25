@@ -200,6 +200,9 @@
   }
   .data-table tr:last-child td {
     border-bottom: none;
+  }
+  .data-table tr.total-row td {
+    border-bottom: none;
     font-weight: 700;
     background: var(--primary-light);
     color: var(--primary);
@@ -410,7 +413,7 @@
           <td class="mono">250円</td>
           <td class="mono">3,000円</td>
         </tr>
-        <tr>
+        <tr class="total-row">
           <td>合計</td>
           <td class="mono">40,500円</td>
           <td class="mono">2,250円</td>
@@ -419,7 +422,7 @@
       </tbody>
     </table>
     <p style="font-size:12px; color:var(--muted); margin-top:16px; padding: 0 4px;">
-      ※ LINEの商流変更により、相手企業様はLINE公式アカウントの月額料金が10%割引となります。そのうち5%分がAIBOTへの利益として還元される仕組みです。
+      ※ 本商流変更はAIBOT・クラブネッツ・クライアント企業の3社で構成されています。クライアント企業はLINE公式アカウントの月額料金から10%割引された金額を支払います。クラブネッツよりLINE月額料金の15%相当がAIBOTに還元され、AIBOTはクライアントから受け取った金額にその一部を補填してLINE利用料金を支払います。差額の5%がAIBOTの手数料収益となります。
     </p>
   </div>
 
@@ -572,27 +575,53 @@
   </div>
 
   <div class="card">
-    <p style="font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.8;">
-      運用支援業務は商流変更・レビュー獲得・チャーン防止を通じて、確実に利益創出へ寄与している。今後はこれらの取り組みを属人化させず、標準化・仕組み化することで、さらなる利益貢献を目指す。
+    <p style="font-size:13px; color:var(--muted); margin-bottom:24px; line-height:1.8;">
+      オンボーディング最終回（Week4）を軸に、以下5つのフローを標準化・仕組み化することで、さらなる利益貢献を目指す。各フローの詳細なスクリプト・進め方は別資料「運用支援後アクション設計書」を参照。
     </p>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>アクション</th>
-          <th>内容</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>① レビュー獲得フローの標準化</td>
-          <td>オンボーディング時にITreviewレビュー依頼を組み込み、全クライアントへ展開</td>
-        </tr>
-        <tr>
-          <td>② 商流変更フローの標準化</td>
-          <td>オンボーディング時に商流変更の案内を必須フローとして組み込み、対象社数を拡大</td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:16px 20px; background:var(--primary-light); border-radius:12px;">
+        <div style="font-size:20px; width:36px; text-align:center; flex-shrink:0;">⭐</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--primary); margin-bottom:4px;">① ITreviewレビュー獲得</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.7;">Week4でレビュー依頼を口頭でお願いし、後日LIBOTのフォーム型アンケートでヒアリング。AIBOTが文章を代行作成し、確認・承認後に掲載。<span style="font-weight:600; color:var(--primary);">月次KPI：2〜3件</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:16px 20px; background:#FFF0EB; border-radius:12px;">
+        <div style="font-size:20px; width:36px; text-align:center; flex-shrink:0;">🔄</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#FF6B35; margin-bottom:4px;">② 商流変更</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.7;">ライト・スタンダードプラン契約者にLINE月額10%割引を案内。認証状況を確認し手続きへ誘導。手続きは総務が対応。<span style="font-weight:600; color:#FF6B35;">月次KPI：1件</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:16px 20px; background:#F3EFFE; border-radius:12px;">
+        <div style="font-size:20px; width:36px; text-align:center; flex-shrink:0;">🛒</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#7C3AED; margin-bottom:4px;">③ ECオーナー案件紹介（LIMONDE）</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.7;">EC未利用のクライアントに対し、LIBOTの月額とプラマイゼロになり得る固定収入の仕組みを紹介。興味あればLIMONDEへ繋ぐ。<span style="font-weight:600; color:#7C3AED;">月次KPI：1件</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:16px 20px; background:#ECFDF5; border-radius:12px;">
+        <div style="font-size:20px; width:36px; text-align:center; flex-shrink:0;">📈</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#059669; margin-bottom:4px;">④ アドバイザー/コンサルへのアップセル</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.7;">1ヶ月の振り返りと課題整理を経て、機会損失防止の観点からアドバイザープラン・コンサルプランを提案。オンボーディングからの契約で初期費用無料。<span style="font-weight:600; color:#059669;">月次KPI：0〜1件</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:16px; padding:16px 20px; background:#FFFBEB; border-radius:12px;">
+        <div style="font-size:20px; width:36px; text-align:center; flex-shrink:0;">🤝</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#D97706; margin-bottom:4px;">⑤ お客様紹介フロー</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.7;">周囲にLINE運用で困っている方がいれば紹介を依頼。紹介成約時に紹介者の月額20%割引・被紹介者の初月無料を案内。<span style="font-weight:600; color:#D97706;">月次KPI：0〜1件</span></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
 </div>
